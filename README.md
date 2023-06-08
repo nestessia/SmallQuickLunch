@@ -1,4 +1,4 @@
-# SmallQuickLunch [![Typing SVG]
+# SmallQuickLunch
 _Крючкова Анастасия Сергеевна & Зухир Амира Саидовна ИВТ 2-1_
 
 __Тема__: База данных онлайн магазина продуктов Small Quick Lunch
