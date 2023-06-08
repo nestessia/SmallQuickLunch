@@ -1,5 +1,3 @@
-
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -50,7 +48,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Курьеры` (
   `id_courier` INT NOT NULL AUTO_INCREMENT,
-  `id_vehicles` INT NOT NULL,
+  `id_vehicles` INT NULL,
   `name` VARCHAR(45) NOT NULL,
   `phone` INT NOT NULL,
   PRIMARY KEY (`id_courier`, `id_vehicles`),
@@ -104,7 +102,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Заказы` (
   `id_respons_employee` INT NOT NULL,
   `OrderDatTime` DATETIME NOT NULL,
   `order_status` VARCHAR(45) NOT NULL,
-  `payment` TINYINT NOT NULL,
   PRIMARY KEY (`id_order`, `id_customer`, `id_delivery`, `id_respons_employee`),
   UNIQUE INDEX `id_order_UNIQUE` (`id_order` ASC) VISIBLE,
   UNIQUE INDEX `id_customer_UNIQUE` (`id_customer` ASC) VISIBLE,
@@ -156,6 +153,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `mydb`.`Категория товара`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Категория товара` (
+  `id_category` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_category`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `mydb`.`Товар`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Товар` (
@@ -163,17 +172,19 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Товар` (
   `id_warehouse` INT NOT NULL,
   `id_supplier` INT NOT NULL,
   `id_order` INT NULL,
+  `id_category` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NOT NULL,
   `expiration_date` DATETIME NULL,
   `price` INT NOT NULL,
   `img` LONGBLOB NOT NULL,
-  PRIMARY KEY (`id_product`, `id_warehouse`, `id_supplier`, `id_order`),
+  PRIMARY KEY (`id_product`, `id_warehouse`, `id_supplier`, `id_order`, `id_category`),
   UNIQUE INDEX `id_products_UNIQUE` (`id_product` ASC) VISIBLE,
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   INDEX `supplier_idx` (`id_supplier` ASC) VISIBLE,
   INDEX `warehouse_idx` (`id_warehouse` ASC) VISIBLE,
   INDEX `basket_idx` (`id_order` ASC) VISIBLE,
+  INDEX `category_idx` (`id_category` ASC) VISIBLE,
   CONSTRAINT `supplier`
     FOREIGN KEY (`id_supplier`)
     REFERENCES `mydb`.`Поставщик` (`id_supplier`)
@@ -188,23 +199,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Товар` (
     FOREIGN KEY (`id_order`)
     REFERENCES `mydb`.`Заказы` (`id_order`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE,
+  CONSTRAINT `category`
+    FOREIGN KEY (`id_category`)
+    REFERENCES `mydb`.`Категория товара` (`id_category`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-USE `mydb` ;
-
--- -----------------------------------------------------
--- Placeholder table for view `mydb`.`view1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`view1` (`id` INT);
-
--- -----------------------------------------------------
--- View `mydb`.`view1`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`view1`;
-USE `mydb`;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
