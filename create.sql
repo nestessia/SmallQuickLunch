@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Покупатели` (
   `id_customer` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `created` DATETIME NOT NULL,
   `sex` VARCHAR(45) NULL,
   `phone` INT NOT NULL,
   `address` VARCHAR(100) NOT NULL,
@@ -48,7 +47,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Курьеры` (
   `id_courier` INT NOT NULL AUTO_INCREMENT,
-  `id_vehicles` INT NULL,
+  `id_vehicles` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `phone` INT NOT NULL,
   PRIMARY KEY (`id_courier`, `id_vehicles`),
@@ -67,7 +66,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Доставка`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Доставка` (
-  `id_delivery` INT NOT NULL,
+  `id_delivery` INT NOT NULL AUTO_INCREMENT,
   `id_courier` INT NOT NULL,
   `date` DATETIME NOT NULL,
   PRIMARY KEY (`id_delivery`, `id_courier`),
@@ -129,7 +128,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Поставщик`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Поставщик` (
-  `id_supplier` INT NOT NULL,
+  `id_supplier` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` TEXT NOT NULL,
   `address` VARCHAR(45) NOT NULL,
@@ -144,7 +143,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Склад`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Склад` (
-  `id_warehouse` INT NOT NULL AUTO_INCREMENT,
+  `id_warehouse` INT NOT NULL,
   `Location` VARCHAR(255) NOT NULL,
   `Capacity` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_warehouse`),
@@ -156,7 +155,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Категория товара`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Категория товара` (
-  `id_category` INT NOT NULL AUTO_INCREMENT,
+  `id_category` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_category`),
@@ -171,13 +170,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Товар` (
   `id_product` INT NOT NULL AUTO_INCREMENT,
   `id_warehouse` INT NOT NULL,
   `id_supplier` INT NOT NULL,
-  `id_order` INT NULL,
+  `id_order` INT NOT NULL,
   `id_category` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NOT NULL,
-  `expiration_date` DATETIME NULL,
+  `expiration_date` DATETIME NOT NULL,
   `price` INT NOT NULL,
-  `img` LONGBLOB NOT NULL,
   PRIMARY KEY (`id_product`, `id_warehouse`, `id_supplier`, `id_order`, `id_category`),
   UNIQUE INDEX `id_products_UNIQUE` (`id_product` ASC) VISIBLE,
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
@@ -211,4 +209,3 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
