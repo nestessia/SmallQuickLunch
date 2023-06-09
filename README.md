@@ -99,3 +99,16 @@ __Реляционная.__
 ## [Запрос](https://github.com/nestessia/SmallQuickLunch/blob/main/create.sql) на создание
 
 ## [Запрос](https://github.com/nestessia/SmallQuickLunch/blob/main/insert.sql) на добавление данных
+
+## Запросы 
+Выборка товаров по категории: ![Выборка готовой еды](https://github.com/nestessia/SmallQuickLunch/assets/99599865/af456879-757d-499f-9f8b-e422656441fe)
+
+Выборка товаров по цене: 
+
+![Выборка товаров по цене](https://github.com/nestessia/SmallQuickLunch/assets/99599865/bac14947-b709-4d03-bc16-732001290282)
+
+Выборка самого продуктивного сотрудника:
+![выборка самого продуктивного сотрудника](https://github.com/nestessia/SmallQuickLunch/assets/99599865/8c436cac-25d1-40c7-905a-351ddffdfb53)
+
+
+
