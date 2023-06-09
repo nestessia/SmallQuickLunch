@@ -57,7 +57,7 @@ __Тема__: База данных онлайн магазина продукт
 
 
 ## ER-диаграмма
-![Диаграмма](https://github.com/nestessia/SmallQuickLunch/assets/99599865/a665c4f2-91f0-444d-b433-bfdbe415d9cb)
+![Диаграмма](https://github.com/nestessia/SmallQuickLunch/assets/99599865/cc052243-e876-4384-be6f-e60ad7345188)
 
 
 ## Связи
