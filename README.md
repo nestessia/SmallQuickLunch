@@ -57,7 +57,8 @@ __Тема__: База данных онлайн магазина продукт
 
 
 ## ER-диаграмма
-![Диаграмма](https://github.com/nestessia/SmallQuickLunch/assets/99599865/cc052243-e876-4384-be6f-e60ad7345188)
+![Диаграмма](https://github.com/nestessia/SmallQuickLunch/assets/99599865/d57d2661-0fb8-43e0-9bd0-56b9c7676ed2)
+
 
 
 ## Связи
@@ -112,6 +113,10 @@ __Реляционная.__
 
 Выборка по слову продукта + выборка поставщика
 ![Выборка продукта по названию](https://github.com/nestessia/SmallQuickLunch/assets/99599865/4ab4871f-6639-4994-8fb3-5d0c2711bef4)
+
+Выборка по времени доставки
+
+![Выборка доставки по времени](https://github.com/nestessia/SmallQuickLunch/assets/99599865/7d10a366-7430-4a4c-861a-59b5a3559e10)
 
 
 
